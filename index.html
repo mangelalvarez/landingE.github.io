@@ -2,747 +2,740 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tu E-commerce Listo para Vender</title>
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- AOS CSS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  
+  <style>
+    /* Estilos para la animación de typing */
+    .typing {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: .15em solid #000;
+      animation: typing 4s steps(60, end), blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    /* Estilos para la sección de beneficios */
+    #beneficios-container {
+      position: relative;
+      width: 100%;
+      min-height: 750px;
+      background: #f9f9f9;
+      overflow: hidden;
+      padding: 2rem 1rem;
+      box-sizing: border-box;
+    }
+
+    /* Grid de beneficios */
+    #beneficios-container section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Cada burbuja/beneficio */
+    .bubble {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 1rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .bubble:hover {
+      transform: scale(1.05);
+    }
+
+    .bubble span {
+      font-size: clamp(2rem, 4vw, 3rem);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .bubble h3 {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      margin: 0.25rem 0;
+    }
+
+    .bubble p {
+      font-size: clamp(0.75rem, 1.5vw, 1rem);
+      margin: 0;
+    }
+
+    /* Estilos para los modales */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .modal-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .modal-image {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .modal-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      font-size: 2rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .modal-prev {
+      left: 10px;
+    }
+
+    .modal-next {
+      right: 10px;
+    }
+
+    /* Responsivo */
+    @media (max-width: 1024px) {
+      #beneficios-container {
+        min-height: 900px;
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #beneficios-container {
+        min-height: 1100px;
+        padding: 1rem;
+      }
+      .bubble span {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+      }
+    }
+
+    @media (max-width: 480px) {
+      #beneficios-container {
+        min-height: 1400px;
+        padding: 0.5rem;
+      }
+      .bubble span {
+        font-size: clamp(1.25rem, 6vw, 2rem);
+      }
+    }
+
+    /* Ajustes para texto en móviles */
+    @media (max-width: 640px) {
+      .text-responsive {
+        font-size: 1.5rem;
+        line-height: 1.3;
+      }
+      
+      .section-padding {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+      }
+      
+      .hero-padding {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+      }
+    }
+  </style>
 </head>
 <body class="font-sans text-gray-800">
 
   <!-- Hero -->
-  <section class="bg-gray-900 text-white text-center py-20" data-aos="fade-up" data-aos-duration="1000">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4 typing">
+  <section class="bg-gray-900 text-white text-center py-12 md:py-20 px-4" data-aos="fade-up" data-aos-duration="1000">
+    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 typing">
       Tu Negocio Online Listo para Vender desde el Primer Día
     </h1>
-    <p class="text-lg md:text-xl mb-8">E-commerce completo, optimizado y con todas las herramientas para crecer, vender y fidelizar clientes.</p>
-    <a href="#contacto" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg shadow-lg transition transform hover:scale-105">Solicitar más información</a>
+    <p class="text-base md:text-lg lg:text-xl mb-8 max-w-3xl mx-auto">E-commerce completo, optimizado y con todas las herramientas para crecer, vender y fidelizar clientes.</p>
+    <a href="#contacto" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg shadow-lg transition transform hover:scale-105 inline-block">Solicitar más información</a>
   </section>
-  <br>
-  <br>
 
-
-<style>
-.typing {
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: .15em solid #000;
-  animation: typing 4s steps(60, end), blink 0.75s step-end infinite;
-}
-
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-@keyframes blink {
-  50% { border-color: transparent }
-}
-</style>
-
-    <!-- Funcionalidades -->
-<!-- Destacado Responsive -->
-<section class="max-w-6xl mx-auto py-16 px-6 text-center bg-yellow-400 rounded-lg shadow-lg mb-12" data-aos="zoom-in" data-aos-duration="1200">
-  <h2 class="text-4xl md:text-5xl font-extrabold text-black leading-tight">
-    ¡ Pruebala Online ! <br>
-    Podras acceder a uso y recorrer el menu de administrador, cargar productos , eliminar , revisar ventas , extraer informacion.. y mucho mas -- >  <span class="text-black underline">Si en Linea ! </span>.
-  </h2>
-</section>
-
+  <!-- Funcionalidades Destacadas -->
+  <section class="max-w-6xl mx-auto py-12 md:py-16 px-4 md:px-6 text-center bg-yellow-400 rounded-lg shadow-lg mb-8 md:mb-12" data-aos="zoom-in" data-aos-duration="1200">
+    <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-black leading-tight">
+      ¡ Pruebala Online ! <br class="hidden md:block">
+      <span class="text-lg md:text-xl lg:text-2xl">Podrás acceder a uso y recorrer el menú de administrador, cargar productos, eliminar, revisar ventas, extraer información... y mucho más</span> <span class="text-black underline block md:inline">¡En Línea!</span>
+    </h2>
+  </section>
 
   <!-- Beneficios -->
-<!-- Beneficios -->
-<div id="beneficios-container" style="position: relative; width: 100%; height: 750px; background: #f9f9f9; overflow: hidden;">
-  <section class="max-w-6xl mx-auto py-16 px-6 grid md:grid-cols-5 gap-8 text-center" data-aos="fade-up" data-aos-duration="1200">
-    <div class="bubble" data-aos="zoom-in" data-aos-delay="100">
-      <span class="text-4xl">🚀</span>
-      <h3 class="text-lg font-bold mt-2">Listo para usar</h3>
-      <p class="text-sm">No pierdas tiempo desarrollando desde cero.</p>
-    </div>
-    <div class="bubble" data-aos="zoom-in" data-aos-delay="200">
-      <span class="text-4xl">📱</span>
-      <h3 class="text-lg font-bold mt-2">Carga desde celular</h3>
-      <p class="text-sm">Agrega productos directamente desde tu teléfono.</p>
-    </div>
-    <div class="bubble" data-aos="zoom-in" data-aos-delay="300">
-      <span class="text-4xl">📊</span>
-      <h3 class="text-lg font-bold mt-2">Trabajo con Excel</h3>
-      <p class="text-sm">Descarga y carga productos usando planillas Excel.</p>
-    </div>
-    <div class="bubble" data-aos="zoom-in" data-aos-delay="400">
-      <span class="text-4xl">📣</span>
-      <h3 class="text-lg font-bold mt-2">Comparte en redes</h3>
-      <p class="text-sm">Publica productos en WhatsApp, Facebook y más.</p>
-    </div>
-    <div class="bubble" data-aos="zoom-in" data-aos-delay="500">
-      <span class="text-4xl">✉️</span>
-      <h3 class="text-lg font-bold mt-2">Correos masivos</h3>
-      <p class="text-sm">Envía promociones y novedades directamente a tus clientes.</p>
-    </div>
-    <div class="bubble" data-aos="zoom-in" data-aos-delay="600">
-      <span class="text-4xl">🎟️</span>
-      <h3 class="text-lg font-bold mt-2">Cupones de descuento</h3>
-      <p class="text-sm">Fideliza clientes ofreciendo promociones especiales.</p>
-    </div>
-    <div class="bubble" data-aos="zoom-in" data-aos-delay="700">
-      <span class="text-4xl">⭐</span>
-      <h3 class="text-lg font-bold mt-2">Valoraciones de clientes</h3>
-      <p class="text-sm">Tus clientes pueden calificar los productos.</p>
-    </div>
-    <div class="bubble" data-aos="zoom-in" data-aos-delay="800">
-      <span class="text-4xl">📩</span>
-      <h3 class="text-lg font-bold mt-2">Notificaciones de pedidos</h3>
-      <p class="text-sm">Recibe correos de confirmación por cada pedido.</p>
-    </div>
-    <div class="bubble" data-aos="zoom-in" data-aos-delay="900">
-      <span class="text-4xl">🗃️</span>
-      <h3 class="text-lg font-bold mt-2">Control de inventario</h3>
-      <p class="text-sm">Gestiona stock y cargas masivas de productos.</p>
-    </div>
-    <div class="bubble" data-aos="zoom-in" data-aos-delay="1000">
-      <span class="text-4xl">🏷️</span>
-      <h3 class="text-lg font-bold mt-2">Categorías y banners</h3>
-      <p class="text-sm">Crea categorías, banners y personaliza tu tienda.</p>
-    </div>
-    <div class="bubble" data-aos="zoom-in" data-aos-delay="1100">
-      <span class="text-4xl">📈</span>
-      <h3 class="text-lg font-bold mt-2">Dashboard general</h3>
-      <p class="text-sm">Visualiza el estado general de tu negocio en un panel.</p>
-    </div>
-    <div class="bubble" data-aos="zoom-in" data-aos-delay="1200">
-      <span class="text-4xl">💸</span>
-      <h3 class="text-lg font-bold mt-2">Transferencias y comprobantes</h3>
-      <p class="text-sm">Acepta pagos por transferencia y revisa comprobantes fácilmente.</p>
-    </div>
-    <div class="bubble" data-aos="zoom-in" data-aos-delay="1300">
-      <span class="text-4xl">💰</span>
-      <h3 class="text-lg font-bold mt-2">Costos y ganancias</h3>
-      <p class="text-sm">Revisa tus costos, márgenes y ganancias en tiempo real.</p>
-    </div>
-    <div class="bubble" data-aos="zoom-in" data-aos-delay="1400">
-      <span class="text-4xl">📋</span>
-      <h3 class="text-lg font-bold mt-2">Cartola de movimientos</h3>
-      <p class="text-sm">Revisa todos los movimientos de tus pedidos fácilmente.</p>
-    </div>
-    <div class="bubble" data-aos="zoom-in" data-aos-delay="1500">
-      <span class="text-4xl">⚙️</span>
-      <h3 class="text-lg font-bold mt-2">Modificar estados de pedidos</h3>
-      <p class="text-sm">Actualiza el estado de cada pedido según avance la gestión.</p>
-    </div>
-  
-  </section>
-</div>
-
-
-<style>
-  /* Contenedor principal */
-  #beneficios-container {
-    position: relative;
-    width: 100%;
-    min-height: 750px; /* altura mínima */
-    background: #f9f9f9;
-    overflow: hidden;
-    padding: 2rem 1rem;
-    box-sizing: border-box;
-    height: 100%;
-  }
-
-  /* Grid de beneficios */
-  #beneficios-container section {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1rem;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  /* Cada burbuja/beneficio */
-  .bubble {
-    background: #fff;
-    padding: 1rem;
-    border-radius: 1rem;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
-  }
-
-  .bubble:hover {
-    transform: scale(1.05);
-  }
-
-  .bubble span {
-    font-size: clamp(2rem, 4vw, 3rem); /* emoji escalable */
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .bubble h3 {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    margin: 0.25rem 0;
-  }
-
-  .bubble p {
-    font-size: clamp(0.75rem, 1.5vw, 1rem);
-    margin: 0;
-  }
-
-  /* Responsivo */
-  @media (max-width: 1024px) {
-    #beneficios-container {
-      min-height: 900px;
-      padding: 1.5rem;
-    }
-  }
-
-  @media (max-width: 768px) {
-    #beneficios-container {
-      min-height: 1100px;
-      padding: 1rem;
-    }
-    .bubble span {
-      font-size: clamp(1.5rem, 5vw, 2.5rem);
-    }
-  }
-
-  @media (max-width: 480px) {
-    #beneficios-container {
-      min-height: 1400px;
-      padding: 0.5rem;
-    }
-    .bubble span {
-      font-size: clamp(1.25rem, 6vw, 2rem);
-    }
-  }
-</style>
-
+  <div id="beneficios-container">
+    <section class="max-w-6xl mx-auto py-12 md:py-16 px-4 md:px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 text-center" data-aos="fade-up" data-aos-duration="1200">
+      <div class="bubble" data-aos="zoom-in" data-aos-delay="100">
+        <span class="text-4xl">🚀</span>
+        <h3 class="text-lg font-bold mt-2">Listo para usar</h3>
+        <p class="text-sm">No pierdas tiempo desarrollando desde cero.</p>
+      </div>
+      <div class="bubble" data-aos="zoom-in" data-aos-delay="200">
+        <span class="text-4xl">📱</span>
+        <h3 class="text-lg font-bold mt-2">Carga desde celular</h3>
+        <p class="text-sm">Agrega productos directamente desde tu teléfono.</p>
+      </div>
+      <div class="bubble" data-aos="zoom-in" data-aos-delay="300">
+        <span class="text-4xl">📊</span>
+        <h3 class="text-lg font-bold mt-2">Trabajo con Excel</h3>
+        <p class="text-sm">Descarga y carga productos usando planillas Excel.</p>
+      </div>
+      <div class="bubble" data-aos="zoom-in" data-aos-delay="400">
+        <span class="text-4xl">📣</span>
+        <h3 class="text-lg font-bold mt-2">Comparte en redes</h3>
+        <p class="text-sm">Publica productos en WhatsApp, Facebook y más.</p>
+      </div>
+      <div class="bubble" data-aos="zoom-in" data-aos-delay="500">
+        <span class="text-4xl">✉️</span>
+        <h3 class="text-lg font-bold mt-2">Correos masivos</h3>
+        <p class="text-sm">Envía promociones y novedades directamente a tus clientes.</p>
+      </div>
+      <div class="bubble" data-aos="zoom-in" data-aos-delay="600">
+        <span class="text-4xl">🎟️</span>
+        <h3 class="text-lg font-bold mt-2">Cupones de descuento</h3>
+        <p class="text-sm">Fideliza clientes ofreciendo promociones especiales.</p>
+      </div>
+      <div class="bubble" data-aos="zoom-in" data-aos-delay="700">
+        <span class="text-4xl">⭐</span>
+        <h3 class="text-lg font-bold mt-2">Valoraciones de clientes</h3>
+        <p class="text-sm">Tus clientes pueden calificar los productos.</p>
+      </div>
+      <div class="bubble" data-aos="zoom-in" data-aos-delay="800">
+        <span class="text-4xl">📩</span>
+        <h3 class="text-lg font-bold mt-2">Notificaciones de pedidos</h3>
+        <p class="text-sm">Recibe correos de confirmación por cada pedido.</p>
+      </div>
+      <div class="bubble" data-aos="zoom-in" data-aos-delay="900">
+        <span class="text-4xl">🗃️</span>
+        <h3 class="text-lg font-bold mt-2">Control de inventario</h3>
+        <p class="text-sm">Gestiona stock y cargas masivas de productos.</p>
+      </div>
+      <div class="bubble" data-aos="zoom-in" data-aos-delay="1000">
+        <span class="text-4xl">🏷️</span>
+        <h3 class="text-lg font-bold mt-2">Categorías y banners</h3>
+        <p class="text-sm">Crea categorías, banners y personaliza tu tienda.</p>
+      </div>
+      <div class="bubble" data-aos="zoom-in" data-aos-delay="1100">
+        <span class="text-4xl">📈</span>
+        <h3 class="text-lg font-bold mt-2">Dashboard general</h3>
+        <p class="text-sm">Visualiza el estado general de tu negocio en un panel.</p>
+      </div>
+      <div class="bubble" data-aos="zoom-in" data-aos-delay="1200">
+        <span class="text-4xl">💸</span>
+        <h3 class="text-lg font-bold mt-2">Transferencias y comprobantes</h3>
+        <p class="text-sm">Acepta pagos por transferencia y revisa comprobantes fácilmente.</p>
+      </div>
+      <div class="bubble" data-aos="zoom-in" data-aos-delay="1300">
+        <span class="text-4xl">💰</span>
+        <h3 class="text-lg font-bold mt-2">Costos y ganancias</h3>
+        <p class="text-sm">Revisa tus costos, márgenes y ganancias en tiempo real.</p>
+      </div>
+      <div class="bubble" data-aos="zoom-in" data-aos-delay="1400">
+        <span class="text-4xl">📋</span>
+        <h3 class="text-lg font-bold mt-2">Cartola de movimientos</h3>
+        <p class="text-sm">Revisa todos los movimientos de tus pedidos fácilmente.</p>
+      </div>
+      <div class="bubble" data-aos="zoom-in" data-aos-delay="1500">
+        <span class="text-4xl">⚙️</span>
+        <h3 class="text-lg font-bold mt-2">Modificar estados de pedidos</h3>
+        <p class="text-sm">Actualiza el estado de cada pedido según avance la gestión.</p>
+      </div>
+    </section>
+  </div>
 
   <!-- Video/Demo -->
-<section class="bg-gray-100 py-16 px-6 text-center" data-aos="fade-up" data-aos-duration="1200">
-  <h2 class="text-3xl font-bold mb-6">Mira cómo funciona</h2>
-  <p class="mb-8">Un sistema completo y fácil de usar, tanto para tus clientes como para tu equipo.</p>
+  <section class="bg-gray-100 py-12 md:py-16 px-4 md:px-6 text-center" data-aos="fade-up" data-aos-duration="1200">
+    <h2 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Mira cómo funciona</h2>
+    <p class="mb-6 md:mb-8 max-w-2xl mx-auto">Un sistema completo y fácil de usar, tanto para tus clientes como para tu equipo.</p>
 
-  <div class="max-w-3xl mx-auto">
-    <iframe 
-      class="w-full aspect-video rounded-lg shadow-lg" 
-      src="https://www.youtube.com/embed/8I54nSAeESs" 
-      title="Demo" 
-      allowfullscreen>
-    </iframe>
-  </div>
-</section>
+    <div class="max-w-3xl mx-auto">
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe 
+          class="w-full h-full rounded-lg shadow-lg" 
+          src="https://www.youtube.com/embed/8I54nSAeESs" 
+          title="Demo" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Funcionalidades Responsive -->
+  <section class="max-w-6xl mx-auto py-12 md:py-16 px-4 md:px-6 text-center bg-yellow-400 rounded-lg shadow-lg mb-8 md:mb-12" data-aos="zoom-in" data-aos-duration="1200">
+    <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-black leading-tight">
+      ¡Totalmente responsive! <br class="hidden md:block">
+      Carga productos fácilmente desde tu celular <span class="text-black underline">en segundos</span>.
+    </h2>
+  </section>
+
+  <!-- Galería de Estilos -->
+  <section class="max-w-6xl mx-auto py-12 md:py-16 px-4 md:px-6">
+    <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12" data-aos="fade-up">Estilos diferentes!</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+      <!-- Banner 1 -->
+      <div data-aos="zoom-in" data-aos-delay="100" class="overflow-hidden rounded-lg shadow-lg">
+        <img src="img/banner1.jpg" alt="Banner 1" 
+             class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
+             data-index="0" />
+      </div>
+
+      <!-- Banner 2 -->
+      <div data-aos="zoom-in" data-aos-delay="200" class="overflow-hidden rounded-lg shadow-lg">
+        <img src="img/banner2.jpg" alt="Banner 2" 
+             class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
+             data-index="1" />
+      </div>
+
+      <!-- Banner 3 -->
+      <div data-aos="zoom-in" data-aos-delay="300" class="overflow-hidden rounded-lg shadow-lg">
+        <img src="img/banner3.jpg" alt="Banner 3" 
+             class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
+             data-index="2" />
+      </div>
+
+      <!-- Banner 4 -->
+      <div data-aos="zoom-in" data-aos-delay="400" class="overflow-hidden rounded-lg shadow-lg">
+        <img src="img/banner4.jpg" alt="Banner 4" 
+             class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
+             data-index="3" />
+      </div>
+
+      <!-- Banner 5 -->
+      <div data-aos="zoom-in" data-aos-delay="500" class="overflow-hidden rounded-lg shadow-lg">
+        <img src="img/banner5.jpg" alt="Banner 5" 
+             class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
+             data-index="4" />
+      </div>
+
+      <!-- Banner 6 -->
+      <div data-aos="zoom-in" data-aos-delay="600" class="overflow-hidden rounded-lg shadow-lg">
+        <img src="img/banner6.jpg" alt="Banner 6" 
+             class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
+             data-index="5" />
+      </div>
+
+      <!-- Banner 7 -->
+      <div data-aos="zoom-in" data-aos-delay="700" class="overflow-hidden rounded-lg shadow-lg">
+        <img src="img/banner7.jpg" alt="Banner 7" 
+             class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
+             data-index="6" />
+      </div>
+
+      <!-- Banner 8 -->
+      <div data-aos="zoom-in" data-aos-delay="800" class="overflow-hidden rounded-lg shadow-lg">
+        <img src="img/banner8.jpg" alt="Banner 8" 
+             class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
+             data-index="7" />
+      </div>
+
+      <!-- Banner 9 -->
+      <div data-aos="zoom-in" data-aos-delay="900" class="overflow-hidden rounded-lg shadow-lg">
+        <img src="img/banner9.jpg" alt="Banner 9" 
+             class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
+             data-index="8" />
+      </div>
+
+      <!-- Banner 10 -->
+      <div data-aos="zoom-in" data-aos-delay="1000" class="overflow-hidden rounded-lg shadow-lg">
+        <img src="img/banner10.jpg" alt="Banner 10" 
+             class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
+             data-index="9" />
+      </div>
+
+      <!-- Banner 11 -->
+      <div data-aos="zoom-in" data-aos-delay="1100" class="overflow-hidden rounded-lg shadow-lg">
+        <img src="img/banner11.jpg" alt="Banner 11" 
+             class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
+             data-index="10" />
+      </div>
+
+      <!-- Banner 12 -->
+      <div data-aos="zoom-in" data-aos-delay="1200" class="overflow-hidden rounded-lg shadow-lg">
+        <img src="img/banner12.jpg" alt="Banner 12" 
+             class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
+             data-index="11" />
+      </div>
+
+      <!-- Banner 13 -->
+      <div data-aos="zoom-in" data-aos-delay="1300" class="overflow-hidden rounded-lg shadow-lg">
+        <img src="img/banner13.jpg" alt="Banner 13" 
+             class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
+             data-index="12" />
+      </div>
+
+      <!-- Banner 14 -->
+      <div data-aos="zoom-in" data-aos-delay="1400" class="overflow-hidden rounded-lg shadow-lg">
+        <img src="img/banner14.jpg" alt="Banner 14" 
+             class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
+             data-index="13" />
+      </div>
+
+      <!-- Banner 15 -->
+      <div data-aos="zoom-in" data-aos-delay="1500" class="overflow-hidden rounded-lg shadow-lg">
+        <img src="img/banner15.jpg" alt="Banner 15" 
+             class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
+             data-index="14" />
+      </div>
+    </div>
+  </section>
 
   <!-- Funcionalidades -->
-<!-- Destacado Responsive -->
-<section class="max-w-6xl mx-auto py-16 px-6 text-center bg-yellow-400 rounded-lg shadow-lg mb-12" data-aos="zoom-in" data-aos-duration="1200">
-  <h2 class="text-4xl md:text-5xl font-extrabold text-black leading-tight">
-    ¡Totalmente responsive! <br>
-    Carga productos fácilmente desde tu celular <span class="text-black underline">en segundos</span>.
-  </h2>
-</section>
-
-
-<section class="max-w-6xl mx-auto py-16 px-6">
-  <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Estilos diferentes !</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-
-    <!-- Banner 1 -->
-    <div data-aos="zoom-in" data-aos-delay="100" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/banner1.jpg" alt="Banner 1" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
-           data-index="0" />
-    </div>
-
-    <!-- Banner 2 -->
-    <div data-aos="zoom-in" data-aos-delay="200" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/banner2.jpg" alt="Banner 2" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
-           data-index="1" />
-    </div>
-
-    <!-- Banner 3 -->
-    <div data-aos="zoom-in" data-aos-delay="300" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/banner3.jpg" alt="Banner 3" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
-           data-index="2" />
-    </div>
-
-    <!-- Banner 4 -->
-    <div data-aos="zoom-in" data-aos-delay="400" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/banner4.jpg" alt="Banner 4" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
-           data-index="3" />
-    </div>
-
-    <!-- Banner 5 -->
-    <div data-aos="zoom-in" data-aos-delay="500" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/banner5.jpg" alt="Banner 5" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
-           data-index="4" />
-    </div>
-
-    <!-- Banner 6 -->
-    <div data-aos="zoom-in" data-aos-delay="600" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/banner6.jpg" alt="Banner 6" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
-           data-index="5" />
-    </div>
-
-    <!-- Banner 7 -->
-    <div data-aos="zoom-in" data-aos-delay="700" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/banner7.jpg" alt="Banner 7" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
-           data-index="6" />
-    </div>
-
-    <!-- Banner 8 -->
-    <div data-aos="zoom-in" data-aos-delay="800" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/banner8.jpg" alt="Banner 8" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
-           data-index="7" />
-    </div>
-
-    <!-- Banner 9 -->
-    <div data-aos="zoom-in" data-aos-delay="900" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/banner9.jpg" alt="Banner 9" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
-           data-index="8" />
-    </div>
-
-    <!-- Banner 10 -->
-    <div data-aos="zoom-in" data-aos-delay="1000" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/banner10.jpg" alt="Banner 10" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
-           data-index="9" />
-    </div>
-
-    <!-- Banner 11 -->
-    <div data-aos="zoom-in" data-aos-delay="1100" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/banner11.jpg" alt="Banner 11" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
-           data-index="10" />
-    </div>
-
-    <!-- Banner 12 -->
-    <div data-aos="zoom-in" data-aos-delay="1200" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/banner12.jpg" alt="Banner 12" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
-           data-index="11" />
-    </div>
-
-    <!-- Banner 13 -->
-    <div data-aos="zoom-in" data-aos-delay="1300" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/banner13.jpg" alt="Banner 13" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
-           data-index="12" />
-    </div>
-
-    <!-- Banner 14 -->
-    <div data-aos="zoom-in" data-aos-delay="1400" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/banner14.jpg" alt="Banner 14" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
-           data-index="13" />
-    </div>
-
-    <!-- Banner 15 -->
-    <div data-aos="zoom-in" data-aos-delay="1500" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/banner15.jpg" alt="Banner 15" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image2" 
-           data-index="14" />
-    </div>
-
-  </div>
-</section>
-
-
-<!-- Segundo modal -->
-<!-- Segundo modal responsivo -->
-<div id="modal2" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-2 sm:p-4 hidden z-50">
-  
-  <!-- Botón cerrar -->
-  <button id="closeModal2" 
-      class="absolute top-2 right-2 sm:top-3 sm:right-3 
-             text-white text-xl sm:text-2xl md:text-3xl font-bold 
-             hover:text-gray-300 z-50">
-      &times;
-  </button>
-
-  <!-- Botón anterior (más hacia el centro) -->
-  <button id="prevBtn2" 
-      class="absolute left-6 sm:left-10 md:left-14 top-1/2 transform -translate-y-1/2 
-             bg-black bg-opacity-50 text-white text-lg sm:text-xl md:text-3xl font-bold 
-             leading-none rounded-full w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 
-             flex items-center justify-center z-50">
-      &#8249;
-  </button>
-
-  <!-- Imagen -->
-  <img id="modalImage2" src="" alt="Imagen ampliada" 
-      class="relative max-w-[85%] sm:max-w-[90%] md:max-w-[95%] 
-             max-h-[60vh] sm:max-h-[70vh] md:max-h-[80vh] 
-             rounded shadow-lg z-40 object-contain" />
-
-  <!-- Botón siguiente (más hacia el centro) -->
-  <button id="nextBtn2" 
-      class="absolute right-6 sm:right-10 md:right-14 top-1/2 transform -translate-y-1/2 
-             bg-black bg-opacity-50 text-white text-lg sm:text-xl md:text-3xl font-bold 
-             leading-none rounded-full w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 
-             flex items-center justify-center z-50">
-      &#8250;
-  </button>
-</div>
-
-
-
-<!-- Funcionalidades -->
-<section class="max-w-6xl mx-auto py-16 px-6" data-aos="fade-up" data-aos-duration="1200">
-  <h2 class="text-3xl font-bold text-center mb-12">Todo lo que incluye</h2>
-  <div class="grid md:grid-cols-2 gap-8">
-    <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-right" data-aos-duration="1000">
-      <h3 class="font-bold text-xl mb-4">Gestión de Usuarios y Clientes</h3>
-      <ul class="list-disc pl-5 text-sm space-y-2">
-        <li>Crea tu fidelidad con promociones masivas.</li>
-        <li>Historial de compras por cliente.</li>
-        <li>Roles y permisos para administradores y empleados.</li>
-      </ul>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-left" data-aos-duration="1000">
-      <h3 class="font-bold text-xl mb-4">Ventas y Carrito</h3>
-      <ul class="list-disc pl-5 text-sm space-y-2">
-        <li>Carrito visible y actualizado en tiempo real.</li>
-        <li>Observaciones en pedidos.</li>
-        <li>Comprobante PDF enviado automáticamente por email.</li>
-      </ul>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
-      <h3 class="font-bold text-xl mb-4">Inventario y Productos</h3>
-      <ul class="list-disc pl-5 text-sm space-y-2">
-        <li>Carga masiva por Excel.</li>
-        <li>Control de stock con alertas.</li>
-        <li>Hasta 3 imágenes por producto con control de peso.</li>
-      </ul>
-    </div>
-    <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-      <h3 class="font-bold text-xl mb-4">Integraciones y Marketing</h3>
-      <ul class="list-disc pl-5 text-sm space-y-2">
-        <li>Pagos seguros: WebPay,Adaptado para transferencias.</li>
-        <li>Google Analytics integrado.</li>
-        <li>Promociones y cupones.</li>
-      </ul>
-    </div>
-          <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400">
-        <h3 class="font-bold text-xl mb-4">Optimización SEO</h3>
+  <section class="max-w-6xl mx-auto py-12 md:py-16 px-4 md:px-6" data-aos="fade-up" data-aos-duration="1200">
+    <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">Todo lo que incluye</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-right" data-aos-duration="1000">
+        <h3 class="font-bold text-lg md:text-xl mb-4">Gestión de Usuarios y Clientes</h3>
+        <ul class="list-disc pl-5 text-sm space-y-2">
+          <li>Crea tu fidelidad con promociones masivas.</li>
+          <li>Historial de compras por cliente.</li>
+          <li>Roles y permisos para administradores y empleados.</li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-left" data-aos-duration="1000">
+        <h3 class="font-bold text-lg md:text-xl mb-4">Ventas y Carrito</h3>
+        <ul class="list-disc pl-5 text-sm space-y-2">
+          <li>Carrito visible y actualizado en tiempo real.</li>
+          <li>Observaciones en pedidos.</li>
+          <li>Comprobante PDF enviado automáticamente por email.</li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
+        <h3 class="font-bold text-lg md:text-xl mb-4">Inventario y Productos</h3>
+        <ul class="list-disc pl-5 text-sm space-y-2">
+          <li>Carga masiva por Excel.</li>
+          <li>Control de stock con alertas.</li>
+          <li>Hasta 3 imágenes por producto con control de peso.</li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+        <h3 class="font-bold text-lg md:text-xl mb-4">Integraciones y Marketing</h3>
+        <ul class="list-disc pl-5 text-sm space-y-2">
+          <li>Pagos seguros: WebPay, Adaptado para transferencias.</li>
+          <li>Google Analytics integrado.</li>
+          <li>Promociones y cupones.</li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400">
+        <h3 class="font-bold text-lg md:text-xl mb-4">Optimización SEO</h3>
         <ul class="list-disc pl-5 text-sm space-y-2">
           <li>Etiquetas meta personalizables para cada página.</li>
           <li>URLs amigables y estructuradas para buscadores.</li>
           <li>Velocidad de carga optimizada para mejor ranking.</li>
         </ul>
       </div>
-  </div>
-</section>
-
-
-<section class="max-w-6xl mx-auto py-16 px-6 text-center bg-red-100 rounded-lg shadow-lg mb-12">
-  <h2 class="text-4xl md:text-5xl font-extrabold text-red-700 mb-6">
-    ⚠️ Comparativa de Precios
-  </h2>
-  <p class="text-xl md:text-2xl mb-8 text-red-800">
-    No podemos mostrar los precios de la competencia, pero puedes revisarlos tú mismo. 👀👇
-  </p>
-  
-  <div class="text-left max-w-xl mx-auto grid grid-cols-2 gap-3">
-    <a href="img/Competencia/imagen1.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 1</a>
-    <a href="img/Competencia/imagen2.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 2</a>
-    <a href="img/Competencia/imagen3.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 3</a>
-    <a href="img/Competencia/imagen4.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 4</a>
-    <a href="img/Competencia/imagen5.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 5</a>
-    <a href="img/Competencia/imagen6.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 6</a>
-    <a href="img/Competencia/imagen7.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 7</a>
-    <a href="img/Competencia/imagen8.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 8</a>
-    <a href="img/Competencia/imagen9.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 9</a>
-</div>
-</section>
-
-
-<!-- Planes y Precios -->
-<section class="max-w-6xl mx-auto py-16 px-6" data-aos="fade-up" data-aos-duration="1200">
-    <h2 class="text-3xl font-bold text-center mb-12">Nosotros  😮👇 </h2>
-    <div class="grid md:grid-cols-2 gap-8 text-center">
-    <!-- Tipo de venta 1 -->
-    <div class="bg-yellow-400 p-8 rounded-lg shadow-lg">
-      <h3 class="text-2xl font-extrabold mb-4">Pago Anual</h3>
-      <p class="text-4xl font-bold mb-4">$259.000 CLP</p>
-      <p class="mb-6">Paga todo incluido por un año.</p>
-      <p class="mb-6">Ahorro del 10%.</p>
-      <ul class="text-left list-disc list-inside mb-6">
-        <li>Hosting, base de datos y soporte incluidos.</li>
-        <li>Dominio ! ( El nombre de tu sitio).</li>
-        <li>Correo corporativo.</li>
-        <li>Actualizaciones menores sin costo.</li>
-        <li>Dominio y correo se actualizan despues de 1 año a $ 20.000.- </li>
-      </ul>
-       <br>
-      <br>
-      <br>
-      <br>
-      <p class="text-4xl font-bold mb-4">Pagaras menos de $700 CLP al Dia !</p>
-      <a href="#contacto" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg shadow-lg transition transform hover:scale-105 inline-block">
-        Contratar ahora
-      </a>
     </div>
+  </section>
 
-    <!-- Tipo de venta 2 -->
-    <div class="bg-yellow-400 p-8 rounded-lg shadow-lg">
-      <h3 class="text-2xl font-extrabold mb-4">Pago Inicial + Mensualidad</h3>
-      <p class="text-4xl font-bold mb-4">$85.000 CLP + $19.000 CLP/mes</p>
-      <p class="mb-6">Total anual :  $297.000 CLP aprox</p>
-      <ul class="text-left list-disc list-inside mb-6">
-        <li>Pago inicial para configuración y carga.</li>
-        <li>Mensualidad para hosting y base de datos.</li>
-        <li>Hosting, base de datos y soporte incluidos.</li>
-        <li>Dominio ! ( El nombre de tu sitio).</li>
-        <li>Correo corporativo.</li>
-        <li>Actualizaciones menores sin costo.</li>
-        <li>Dominio y correo se actualizan despues de 1 año a $ 20.000.- </li>
-      </ul>
-     
-      <p class="text-4xl font-bold mb-4">Pagaras menos de $800 CLP al Dia !</p>
-      <a href="#contacto" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg shadow-lg transition transform hover:scale-105 inline-block">
-        Contratar ahora
-      </a>
-    </div>
-  </div>
-
-  <!-- Cobro por nuevas funcionalidades -->
-  <div class="mt-16 bg-white p-8 rounded-lg shadow-lg text-left max-w-4xl mx-auto">
-    <h3 class="text-2xl font-extrabold mb-6 text-center">Cobro por Nuevas Funcionalidades</h3>
-    <table class="w-full text-left border-collapse border border-gray-300">
-      <thead>
-        <tr class="bg-yellow-400">
-          <th class="border border-gray-300 px-4 py-2">Complejidad</th>
-          <th class="border border-gray-300 px-4 py-2">Costo Estimado (CLP)</th>
-          <th class="border border-gray-300 px-4 py-2">Descripción</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="border border-gray-300 px-4 py-2 font-semibold">Sencillo</td>
-          <td class="border border-gray-300 px-4 py-2">$50.000</td>
-          <td class="border border-gray-300 px-4 py-2">Cambios menores, ajustes o mejoras pequeñas.</td>
-        </tr>
-        <tr class="bg-yellow-50">
-          <td class="border border-gray-300 px-4 py-2 font-semibold">Medio</td>
-          <td class="border border-gray-300 px-4 py-2">$100.000</td>
-          <td class="border border-gray-300 px-4 py-2">Nuevas funcionalidades moderadas, integración adicional.</td>
-        </tr>
-        <tr>
-          <td class="border border-gray-300 px-4 py-2 font-semibold">Complejo</td>
-          <td class="border border-gray-300 px-4 py-2">$200.000+</td>
-          <td class="border border-gray-300 px-4 py-2">Desarrollo avanzado, integraciones o módulos extensos.</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p class="mt-6 text-center text-sm text-gray-600 italic">
-      También ofrecemos planes de mantenimiento mensual para soporte y mejoras continuas.
+  <!-- Comparativa de Precios -->
+  <section class="max-w-6xl mx-auto py-12 md:py-16 px-4 md:px-6 text-center bg-red-100 rounded-lg shadow-lg mb-8 md:mb-12">
+    <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-red-700 mb-4 md:mb-6">
+      ⚠️ Comparativa de Precios
+    </h2>
+    <p class="text-lg md:text-xl mb-6 md:mb-8 text-red-800 max-w-3xl mx-auto">
+      No podemos mostrar los precios de la competencia, pero puedes revisarlos tú mismo. 👀👇
     </p>
-  </div>
-</section>
+    
+    <div class="text-left max-w-xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <a href="img/Competencia/imagen1.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 1</a>
+      <a href="img/Competencia/imagen2.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 2</a>
+      <a href="img/Competencia/imagen3.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 3</a>
+      <a href="img/Competencia/imagen4.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 4</a>
+      <a href="img/Competencia/imagen5.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 5</a>
+      <a href="img/Competencia/imagen6.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 6</a>
+      <a href="img/Competencia/imagen7.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 7</a>
+      <a href="img/Competencia/imagen8.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 8</a>
+      <a href="img/Competencia/imagen9.jpg" target="_blank" class="text-blue-600 underline block">Imagen de comparativa 9</a>
+    </div>
+  </section>
 
+  <!-- Planes y Precios -->
+  <section class="max-w-6xl mx-auto py-12 md:py-16 px-4 md:px-6" data-aos="fade-up" data-aos-duration="1200">
+    <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">Nosotros 😮👇</h2>
+    <div class="grid md:grid-cols-2 gap-6 text-center">
+      <!-- Tipo de venta 1 -->
+      <div class="bg-yellow-400 p-6 md:p-8 rounded-lg shadow-lg">
+        <h3 class="text-xl md:text-2xl font-extrabold mb-4">Pago Anual</h3>
+        <p class="text-3xl md:text-4xl font-bold mb-4">$259.000 CLP</p>
+        <p class="mb-4 md:mb-6">Paga todo incluido por un año.</p>
+        <p class="mb-4 md:mb-6">Ahorro del 10%.</p>
+        <ul class="text-left list-disc list-inside mb-4 md:mb-6 space-y-2">
+          <li>Hosting, base de datos y soporte incluidos.</li>
+          <li>Dominio ! (El nombre de tu sitio).</li>
+          <li>Correo corporativo.</li>
+          <li>Actualizaciones menores sin costo.</li>
+          <li>Dominio y correo se actualizan después de 1 año a $20.000.-</li>
+        </ul>
+        <p class="text-2xl md:text-3xl font-bold mb-4">Pagarás menos de $700 CLP al Día!</p>
+        <a href="#contacto" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 md:py-3 px-4 md:px-6 rounded-lg shadow-lg transition transform hover:scale-105 inline-block">
+          Contratar ahora
+        </a>
+      </div>
 
+      <!-- Tipo de venta 2 -->
+      <div class="bg-yellow-400 p-6 md:p-8 rounded-lg shadow-lg">
+        <h3 class="text-xl md:text-2xl font-extrabold mb-4">Pago Inicial + Mensualidad</h3>
+        <p class="text-3xl md:text-4xl font-bold mb-4">$85.000 CLP + $19.000 CLP/mes</p>
+        <p class="mb-4 md:mb-6">Total anual: $297.000 CLP aprox</p>
+        <ul class="text-left list-disc list-inside mb-4 md:mb-6 space-y-2">
+          <li>Pago inicial para configuración y carga.</li>
+          <li>Mensualidad para hosting y base de datos.</li>
+          <li>Hosting, base de datos y soporte incluidos.</li>
+          <li>Dominio ! (El nombre de tu sitio).</li>
+          <li>Correo corporativo.</li>
+          <li>Actualizaciones menores sin costo.</li>
+          <li>Dominio y correo se actualizan después de 1 año a $20.000.-</li>
+        </ul>
+        <p class="text-2xl md:text-3xl font-bold mb-4">Pagarás menos de $800 CLP al Día!</p>
+        <a href="#contacto" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 md:py-3 px-4 md:px-6 rounded-lg shadow-lg transition transform hover:scale-105 inline-block">
+          Contratar ahora
+        </a>
+      </div>
+    </div>
 
+    <!-- Cobro por nuevas funcionalidades -->
+    <div class="mt-8 md:mt-12 bg-white p-6 md:p-8 rounded-lg shadow-lg text-left max-w-4xl mx-auto">
+      <h3 class="text-xl md:text-2xl font-extrabold mb-4 md:mb-6 text-center">Cobro por Nuevas Funcionalidades</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-yellow-400">
+              <th class="border border-gray-300 px-3 py-2 text-sm md:text-base">Complejidad</th>
+              <th class="border border-gray-300 px-3 py-2 text-sm md:text-base">Costo Estimado (CLP)</th>
+              <th class="border border-gray-300 px-3 py-2 text-sm md:text-base">Descripción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 px-3 py-2 font-semibold text-sm md:text-base">Sencillo</td>
+              <td class="border border-gray-300 px-3 py-2 text-sm md:text-base">$50.000</td>
+              <td class="border border-gray-300 px-3 py-2 text-sm md:text-base">Cambios menores, ajustes o mejoras pequeñas.</td>
+            </tr>
+            <tr class="bg-yellow-50">
+              <td class="border border-gray-300 px-3 py-2 font-semibold text-sm md:text-base">Medio</td>
+              <td class="border border-gray-300 px-3 py-2 text-sm md:text-base">$100.000</td>
+              <td class="border border-gray-300 px-3 py-2 text-sm md:text-base">Nuevas funcionalidades moderadas, integración adicional.</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-3 py-2 font-semibold text-sm md:text-base">Complejo</td>
+              <td class="border border-gray-300 px-3 py-2 text-sm md:text-base">$200.000+</td>
+              <td class="border border-gray-300 px-3 py-2 text-sm md:text-base">Desarrollo avanzado, integraciones o módulos extensos.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="mt-4 md:mt-6 text-center text-xs md:text-sm text-gray-600 italic">
+        También ofrecemos planes de mantenimiento mensual para soporte y mejoras continuas.
+      </p>
+    </div>
+  </section>
 <!-- Galería de Imágenes -->
-<section class="max-w-6xl mx-auto py-16 px-6">
-  <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Galería del Proyecto</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+<section class="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+  <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12" data-aos="fade-up">
+    Galería del Proyecto
+  </h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
     <div data-aos="zoom-in" data-aos-delay="100" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto1.jpg" alt="Proyecto imagen 1" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+      <img src="img/proyecto1.jpg" alt="Proyecto imagen 1"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="0" />
     </div>
     <div data-aos="zoom-in" data-aos-delay="200" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto2.jpg" alt="Proyecto imagen 2" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+      <img src="img/proyecto2.jpg" alt="Proyecto imagen 2"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="1" />
     </div>
     <div data-aos="zoom-in" data-aos-delay="300" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto3.jpg" alt="Proyecto imagen 3" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+      <img src="img/proyecto3.jpg" alt="Proyecto imagen 3"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="2" />
     </div>
     <div data-aos="zoom-in" data-aos-delay="400" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto4.jpg" alt="Proyecto imagen 4" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+      <img src="img/proyecto4.jpg" alt="Proyecto imagen 4"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="3" />
     </div>
     <div data-aos="zoom-in" data-aos-delay="500" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto5.jpg" alt="Proyecto imagen 5" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+      <img src="img/proyecto5.jpg" alt="Proyecto imagen 5"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="4" />
     </div>
     <div data-aos="zoom-in" data-aos-delay="600" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto6.jpg" alt="Proyecto imagen 6" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+      <img src="img/proyecto6.jpg" alt="Proyecto imagen 6"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="5" />
     </div>
     <div data-aos="zoom-in" data-aos-delay="700" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto7.jpg" alt="Proyecto imagen 7" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+      <img src="img/proyecto7.jpg" alt="Proyecto imagen 7"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="6" />
     </div>
     <div data-aos="zoom-in" data-aos-delay="800" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto8.jpg" alt="Proyecto imagen 8" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+      <img src="img/proyecto8.jpg" alt="Proyecto imagen 8"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="7" />
     </div>
     <div data-aos="zoom-in" data-aos-delay="900" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto9.jpg" alt="Proyecto imagen 9" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+      <img src="img/proyecto9.jpg" alt="Proyecto imagen 9"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="8" />
     </div>
     <div data-aos="zoom-in" data-aos-delay="1000" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto10.jpg" alt="Proyecto imagen 10" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+      <img src="img/proyecto10.jpg" alt="Proyecto imagen 10"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="9" />
     </div>
     <div data-aos="zoom-in" data-aos-delay="1100" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto11.jpg" alt="Proyecto imagen 11" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+      <img src="img/proyecto11.jpg" alt="Proyecto imagen 11"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="10" />
     </div>
     <div data-aos="zoom-in" data-aos-delay="1200" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto12.jpg" alt="Proyecto imagen 12" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+      <img src="img/proyecto12.jpg" alt="Proyecto imagen 12"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="11" />
     </div>
     <div data-aos="zoom-in" data-aos-delay="1300" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto13.jpg" alt="Proyecto imagen 13" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+      <img src="img/proyecto13.jpg" alt="Proyecto imagen 13"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="12" />
     </div>
     <div data-aos="zoom-in" data-aos-delay="1400" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto14.jpg" alt="Proyecto imagen 14" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+      <img src="img/proyecto14.jpg" alt="Proyecto imagen 14"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="13" />
     </div>
     <div data-aos="zoom-in" data-aos-delay="1500" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto15.jpg" alt="Proyecto imagen 15" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+      <img src="img/proyecto15.jpg" alt="Proyecto imagen 15"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="14" />
     </div>
     <div data-aos="zoom-in" data-aos-delay="1600" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto16.jpg" alt="Proyecto imagen 16" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+      <img src="img/proyecto16.jpg" alt="Proyecto imagen 16"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="15" />
     </div>
     <div data-aos="zoom-in" data-aos-delay="1700" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto17.jpg" alt="Proyecto imagen 17" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+      <img src="img/proyecto17.jpg" alt="Proyecto imagen 17"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="16" />
     </div>
-    <div data-aos="zoom-in" data-aos-delay="1700" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto18.jpg" alt="Proyecto imagen 17" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+    <div data-aos="zoom-in" data-aos-delay="1800" class="overflow-hidden rounded-lg shadow-lg">
+      <img src="img/proyecto18.jpg" alt="Proyecto imagen 18"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="17" />
     </div>
-    <div data-aos="zoom-in" data-aos-delay="1700" class="overflow-hidden rounded-lg shadow-lg">
-      <img src="img/proyecto19.jpg" alt="Proyecto imagen 17" 
-           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image" 
+    <div data-aos="zoom-in" data-aos-delay="1900" class="overflow-hidden rounded-lg shadow-lg">
+      <img src="img/proyecto19.jpg" alt="Proyecto imagen 19"
+           class="w-full h-auto transform transition duration-500 hover:scale-105 cursor-pointer gallery-image"
            data-index="18" />
     </div>
   </div>
 </section>
 
+<section class="bg-yellow-500 py-12 text-center" data-aos="fade-up" data-aos-duration="1000">
+  <h2 class="text-2xl sm:text-3xl font-bold mb-4">Empieza a vender online hoy mismo</h2>
+  <p class="mb-6">Haz crecer tu negocio sin complicaciones.</p>
+  <a href="#contacto" class="bg-black text-white font-bold py-3 px-6 rounded-lg shadow hover:bg-gray-800 transition transform hover:scale-105">
+    Solicitar demo
+  </a>
+</section>
 
+<section class="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8" data-aos="fade-up" data-aos-duration="1000">
+  <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8">Preguntas Frecuentes</h2>
+  <div class="space-y-4 sm:space-y-6">
+    <details class="bg-white p-4 rounded-lg shadow" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+      <summary class="font-bold cursor-pointer">¿Necesito conocimientos técnicos para usarlo?</summary>
+      <p class="mt-2 text-sm">No, todo está diseñado para que lo uses fácilmente sin conocimientos previos.</p>
+    </details>
+    <details class="bg-white p-4 rounded-lg shadow" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+      <summary class="font-bold cursor-pointer">¿Puedo agregar más productos con el tiempo?</summary>
+      <p class="mt-2 text-sm">Sí, puedes ampliar tu catálogo y gestionar hasta 500 artículos.</p>
+    </details>
+    <details class="bg-white p-4 rounded-lg shadow" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+      <summary class="font-bold cursor-pointer">¿Es seguro para mis clientes?</summary>
+      <p class="mt-2 text-sm">Sí, usamos HTTPS y métodos de pago confiables.</p>
+    </details>
+    <details class="bg-white p-4 rounded-lg shadow" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+      <summary class="font-bold cursor-pointer">¿Puedo personalizar el diseño de mi tienda?</summary>
+      <p class="mt-2 text-sm">Se pueden modificar colores base, banners y parte superior e inferior desde el panel de administración.</p>
+    </details>
+    <details class="bg-white p-4 rounded-lg shadow" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+      <summary class="font-bold cursor-pointer">¿Qué métodos de pago puedo usar?</summary>
+      <p class="mt-2 text-sm">Webpay, transferencias y otras opciones integrables desde la plataforma.</p>
+    </details>
+    <details class="bg-white p-4 rounded-lg shadow" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+      <summary class="font-bold cursor-pointer">¿Puedo vender productos digitales?</summary>
+      <p class="mt-2 text-sm">Sí, puedes vender cursos, libros, servicios y otros productos de manera modular.</p>
+    </details>
+  </div>
+</section>
 
-  <!-- CTA -->
-  <section class="bg-yellow-500 py-12 text-center" data-aos="fade-up" data-aos-duration="1000">
-    <h2 class="text-3xl font-bold mb-4">Empieza a vender online hoy mismo</h2>
-    <p class="mb-6">Haz crecer tu negocio sin complicaciones.</p>
-    <a href="#contacto" class="bg-black text-white font-bold py-3 px-6 rounded-lg shadow hover:bg-gray-800 transition transform hover:scale-105">Solicitar demo</a>
-  </section>
+<section id="contacto" class="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up" data-aos-duration="1000">
+  <h2 class="text-2xl sm:text-3xl font-bold mb-4">¿Listo para dar el siguiente paso?</h2>
+  <p class="mb-6 sm:mb-8">Contáctanos hoy mismo y te mostraremos cómo empezar.</p>
+  <a href="https://wa.me/+56936176868" target="_blank" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg shadow-lg transition transform hover:scale-105">
+    Escríbenos por WhatsApp
+  </a>
+</section>
 
-  <!-- Preguntas frecuentes -->
-  <section class="max-w-4xl mx-auto py-16 px-6" data-aos="fade-up" data-aos-duration="1000">
-    <h2 class="text-3xl font-bold text-center mb-8">Preguntas Frecuentes</h2>
-    <div class="space-y-6">
-      <details class="bg-white p-4 rounded-lg shadow" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
-        <summary class="font-bold cursor-pointer">¿Necesito conocimientos técnicos para usarlo?</summary>
-        <p class="mt-2 text-sm">No, todo está diseñado para que lo uses fácilmente sin conocimientos previos.</p>
-      </details>
-      <details class="bg-white p-4 rounded-lg shadow" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-        <summary class="font-bold cursor-pointer">¿Puedo agregar más productos con el tiempo?</summary>
-        <p class="mt-2 text-sm">Sí, puedes ampliar tu catálogo podras trabajar con 500 articulos, eliminar productos modificar y revisar movimientos de inventario.</p>
-      </details>
-      <details class="bg-white p-4 rounded-lg shadow" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
-        <summary class="font-bold cursor-pointer">¿Es seguro para mis clientes?</summary>
-        <p class="mt-2 text-sm">Sí, usamos HTTPS y métodos de pago confiables.</p>
-      </details>
-          
-        <!-- Nuevas preguntas -->
-        <details class="bg-white p-4 rounded-lg shadow" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
-          <summary class="font-bold cursor-pointer">¿Puedo personalizar el diseño de mi tienda?</summary>
-          <p class="mt-2 text-sm">Se pueden modificar los colores bases generanes , parte superior , inferior. Los Banners los puedes cargar tu directamente desde el panel admin ! </p>
-        </details>
-        <details class="bg-white p-4 rounded-lg shadow" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
-          <summary class="font-bold cursor-pointer">¿Qué métodos de pago puedo usar?</summary>
-          <p class="mt-2 text-sm">Si tienes cuentas webpay o algun comercio se puede conectar facilmente a la plataforma , ademas cuenta con un panel para recepcionar transferencias y que puedas revisar el comprobante ! .</p>
-        </details>
-        <details class="bg-white p-4 rounded-lg shadow" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
-          <summary class="font-bold cursor-pointer">¿Puedo vender productos digitales?</summary>
-          <p class="mt-2 text-sm">Sí, puedes vender cursos , libros, productos , todo tipo de servicio , es modular .</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contacto -->
-  <section id="contacto" class="bg-gray-900 text-white py-16 px-6 text-center" data-aos="fade-up" data-aos-duration="1000">
-    <h2 class="text-3xl font-bold mb-4">¿Listo para dar el siguiente paso?</h2>
-    <p class="mb-8">Contáctanos hoy mismo y te mostraremos cómo empezar.</p>
-    <a href="https://wa.me/+56936176868" target="_blank" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg shadow-lg transition transform hover:scale-105">Escríbenos por WhatsApp</a>
-  </section>
-
-
-    <!-- Modal de imagen ampliada -->
-<!-- Modal de imagen ampliada -->
 <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-2 sm:p-4 hidden z-50">
-    
-    <!-- Capa clickeable para cerrar -->
-    <div id="modalOverlay" class="absolute inset-0"></div>
-
-    <!-- Botón cerrar -->
-    <button id="closeModal" 
-        class="absolute top-2 right-2 sm:top-3 sm:right-3 
-               text-white text-xl sm:text-2xl md:text-3xl font-bold 
-               hover:text-gray-300 z-50">
-        &times;
-    </button>
-
-    <!-- Botón anterior -->
-    <button id="prevBtn" 
-        class="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 
-               bg-black bg-opacity-50 text-white text-lg sm:text-xl md:text-3xl font-bold 
-               leading-none rounded-full w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 
-               flex items-center justify-center z-50">
-        &#8249;
-    </button>
-
-    <!-- Imagen -->
-    <img id="modalImage" src="" alt="Imagen ampliada" 
-        class="relative max-w-[85%] sm:max-w-[90%] md:max-w-[95%] 
-               max-h-[60vh] sm:max-h-[70vh] md:max-h-[80vh] 
-               rounded shadow-lg z-40 object-contain" />
-
-    <!-- Botón siguiente -->
-    <button id="nextBtn" 
-        class="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 
-               bg-black bg-opacity-50 text-white text-lg sm:text-xl md:text-3xl font-bold 
-               leading-none rounded-full w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 
-               flex items-center justify-center z-50">
-        &#8250;
-    </button>
+  <div id="modalOverlay" class="absolute inset-0"></div>
+  <button id="closeModal" class="absolute top-2 right-2 sm:top-3 sm:right-3 text-white text-2xl sm:text-3xl md:text-4xl font-bold hover:text-gray-300 z-50">
+      &times;
+  </button>
+  <button id="prevBtn" class="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white text-xl sm:text-2xl md:text-3xl font-bold rounded-full w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 flex items-center justify-center z-50">
+      &#8249;
+  </button>
+  <img id="modalImage" src="" alt="Imagen ampliada" class="relative max-w-[90%] sm:max-w-[80%] md:max-w-[70%] max-h-[60vh] sm:max-h-[70vh] md:max-h-[80vh] rounded shadow-lg z-40 object-contain" />
+  <button id="nextBtn" class="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white text-xl sm:text-2xl md:text-3xl font-bold rounded-full w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 flex items-center justify-center z-50">
+      &#8250;
+  </button>
 </div>
 
   <!-- Footer -->
