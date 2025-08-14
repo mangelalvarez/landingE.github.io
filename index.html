@@ -186,6 +186,7 @@
         padding-bottom: 5rem;
       }
     }
+
   </style>
 </head>
 <body class="font-sans text-gray-800">
@@ -288,22 +289,70 @@
     </section>
   </div>
 
-  <!-- Video/Demo -->
-  <section class="bg-gray-100 py-12 md:py-16 px-4 md:px-6 text-center" data-aos="fade-up" data-aos-duration="1200">
-    <h2 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Mira cómo funciona</h2>
-    <p class="mb-6 md:mb-8 max-w-2xl mx-auto">Un sistema completo y fácil de usar, tanto para tus clientes como para tu equipo.</p>
+<!-- Video/Demo -->
+<section id="video-demo" data-aos="fade-up" data-aos-duration="1200">
+  <h2>Mira cómo funciona</h2>
+  <p>Un sistema completo y fácil de usar, tanto para tus clientes como para tu equipo.</p>
 
-    <div class="max-w-3xl mx-auto">
-      <div class="aspect-w-16 aspect-h-9">
-        <iframe 
-          class="w-full h-full rounded-lg shadow-lg" 
-          src="https://www.youtube.com/embed/8I54nSAeESs" 
-          title="Demo" 
-          allowfullscreen>
-        </iframe>
-      </div>
-    </div>
-  </section>
+  <!-- Contenedor responsivo más ancho -->
+  <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/8I54nSAeESs" 
+            title="Demo" 
+            allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<style>
+  /* Sección */
+  #video-demo {
+    background-color: #f3f4f6; /* gris claro similar a bg-gray-100 */
+    padding: 4rem 1.5rem; /* py-16 px-6 */
+    text-align: center;
+  }
+
+  /* Título */
+  #video-demo h2 {
+    font-size: 2rem; /* text-3xl */
+    font-weight: bold;
+    margin-bottom: 1.5rem; /* mb-6 */
+  }
+
+  /* Párrafo */
+  #video-demo p {
+    margin-bottom: 2rem; /* mb-8 */
+    max-width: 42rem; /* max-w-2xl */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Contenedor del iframe */
+  .video-container {
+    max-width: 96rem; /* max-w-6xl */
+    margin: 0 auto;
+  }
+
+  /* Iframe */
+  .video-container iframe {
+    width: 100%;
+    height: 700px; /* h-[700px] */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
+  }
+
+  /* Alturas responsivas */
+  @media (min-width: 768px) {
+    .video-container iframe {
+      height: 900px; /* md:h-[900px] */
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .video-container iframe {
+      height: 1000px; /* lg:h-[1000px] */
+    }
+  }
+</style>
 
   <!-- Funcionalidades Responsive -->
   <section class="max-w-6xl mx-auto py-12 md:py-16 px-4 md:px-6 text-center bg-yellow-400 rounded-lg shadow-lg mb-8 md:mb-12" data-aos="zoom-in" data-aos-duration="1200">
